@@ -33,22 +33,64 @@ import java.util.UUID;
 
 public interface IWrappedPlatform {
 
+    /**
+     * Get an array of all online wrapped players
+     * @return
+     */
     IWrappedPlayer[] getOnlinePlayers();
 
+    /**
+     * Get a wrapped player by string
+     * @param name the name of the player
+     * @return
+     */
     IWrappedPlayer getPlayer(String name);
 
+    /**
+     * Get a wrapped player by uuid
+     * @param uuid the uuid of the player
+     * @return
+     */
     IWrappedPlayer getPlayer(UUID uuid);
 
+    /**
+     * Get a wrapped offline player by uuid
+     * @param uuid the uuid of the player
+     * @return
+     */
     IWrappedOfflinePlayer getOfflinePlayer(UUID uuid);
 
+    /**
+     * Get the wrapped offline player by string
+     * @param name the name of the player
+     * @return
+     */
     IWrappedOfflinePlayer getOfflinePlayer(String name);
 
+    /**
+     * Enables the platform
+     */
     void enable();
 
+    /**
+     * Disables the platform
+     */
     void disable();
 
+    /**
+     * Create a wrapped inventory
+     * @param title the name of the inventory
+     * @param rows the size of the inventory
+     * @param items the items in the inventory
+     * @return
+     */
     IWrappedInventory createInventory(String title, int rows, List<ShopItem> items);
 
+    /**
+     * Create a wrapped item stack
+     * @param item the item to be wrapped
+     * @return
+     */
     IWrappedItemStack toItemStack(ShopItem item);
 
 }

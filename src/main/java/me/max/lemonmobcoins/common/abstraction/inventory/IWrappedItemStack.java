@@ -24,11 +24,24 @@ package me.max.lemonmobcoins.common.abstraction.inventory;
 
 public interface IWrappedItemStack {
 
+    /**
+     * Get the wrapped item stack
+     * @return
+     */
     Object getStack();
 
+    /**
+     * Get the has code of the wrapped item stack
+     * @return
+     */
     @Override
     int hashCode();
 
+    /**
+     * Check if the object equals the wrapped item stack
+     * @param obj the object being compared
+     * @return
+     */
     @Override
     boolean equals(Object obj);
 

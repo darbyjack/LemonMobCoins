@@ -46,6 +46,10 @@ public class CoinMob {
         this.amount2 = amount2;
     }
 
+    /**
+     * Get the mob
+     * @return name of mob
+     */
     @NotNull
     public String getMob() {
         return mob;

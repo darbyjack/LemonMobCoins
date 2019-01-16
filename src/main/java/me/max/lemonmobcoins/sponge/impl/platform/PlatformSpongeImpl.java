@@ -65,6 +65,10 @@ public class PlatformSpongeImpl implements IWrappedPlatform {
         this.plugin = plugin;
     }
 
+    /**
+     * Get an array of wrapped online players
+     * @return array of wrapped online players
+     */
     @Override
     public IWrappedPlayer[] getOnlinePlayers() {
         List<IWrappedPlayer> players = new ArrayList<>();
@@ -72,41 +76,74 @@ public class PlatformSpongeImpl implements IWrappedPlatform {
         return players.toArray(new IWrappedPlayer[0]);
     }
 
+    /**
+     * Get a wrapped player object from a string
+     * @param name the name of the player
+     * @return wrapped player object
+     */
     @Override
     public IWrappedPlayer getPlayer(String name) {
         Optional<Player> player = Sponge.getGame().getServer().getPlayer(name);
         return player.map(PlayerSpongeImpl::new).orElse(null);
     }
 
+    /**
+     * Get a wrapped player object from a uuid
+     * @param uuid the uuid of the player
+     * @return wrapped player object
+     */
     @Override
     public IWrappedPlayer getPlayer(UUID uuid) {
         Optional<Player> player = Sponge.getGame().getServer().getPlayer(uuid);
         return player.map(PlayerSpongeImpl::new).orElse(null);
     }
 
+    /**
+     * Get an offline player object from uuid
+     * @param uuid the uuid of the player
+     * @return offline wrapped player object
+     */
     @Override
     public IWrappedOfflinePlayer getOfflinePlayer(UUID uuid) {
         Optional<User> user = getUser(uuid);
         return user.map(OfflinePlayerSpongeImpl::new).orElse(null);
     }
 
+    /**
+     * Get an offline player object from string
+     * @param name the name of the player
+     * @return offline wrapped player object
+     */
     @Override
     public IWrappedOfflinePlayer getOfflinePlayer(String name) {
         Optional<User> user = getUser(name);
         return user.map(OfflinePlayerSpongeImpl::new).orElse(null);
     }
 
+    /**
+     * Enables the platform
+     */
     @Override
     public void enable() {
         plugin.onPreInit(null);
         plugin.onInit(null);
     }
 
+    /**
+     * Disables the platform
+     */
     @Override
     public void disable() {
         plugin.onServerStop(null);
     }
 
+    /**
+     * Create a wrapped inventory
+     * @param title the name of the inventory
+     * @param rows the size of the inventory
+     * @param items the items in the inventory
+     * @return wrapped inventory
+     */
     @Override
     public IWrappedInventory createInventory(String title, int rows, List<ShopItem> items) {
         Inventory.Builder invBuilder = Inventory.builder();
@@ -123,6 +160,11 @@ public class PlatformSpongeImpl implements IWrappedPlatform {
 
     }
 
+    /**
+     * Create a wrapped item stack
+     * @param item the item to be wrapped
+     * @return wrapped item stack
+     */
     @Override
     public IWrappedItemStack toItemStack(ShopItem item) {
         Optional<ItemType> type = Sponge.getRegistry().getType(ItemType.class, item.getMaterial());
@@ -141,11 +183,21 @@ public class PlatformSpongeImpl implements IWrappedPlatform {
         return new ItemStackSpongeImpl(itemStack);
     }
 
+    /**
+     * Gets an optional user by uuid
+     * @param uuid the uuid of the user
+     * @return optional user
+     */
     private Optional<User> getUser(UUID uuid) {
         Optional<UserStorageService> userStorage = Sponge.getServiceManager().provide(UserStorageService.class);
         return userStorage.flatMap(userStorage1 -> userStorage1.get(uuid));
     }
 
+    /**
+     * Gets an optional user by string
+     * @param name the name of the user
+     * @return optional user
+     */
     private Optional<User> getUser(String name) {
         Optional<UserStorageService> userStorage = Sponge.getServiceManager().provide(UserStorageService.class);
         return userStorage.flatMap(userStorage1 -> userStorage1.get(name));

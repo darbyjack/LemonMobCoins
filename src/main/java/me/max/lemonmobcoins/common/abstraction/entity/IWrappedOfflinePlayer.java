@@ -26,12 +26,28 @@ import java.util.UUID;
 
 public interface IWrappedOfflinePlayer {
 
+    /**
+     * Get the name of the wrapped offline player
+     * @return
+     */
     String getName();
 
+    /**
+     * Get the uuid of the wrapped offline player
+     * @return
+     */
     UUID getUniqueId();
 
+    /**
+     * Check if the wrapped offline player is online or not
+     * @return
+     */
     boolean isOnline();
 
+    /**
+     * Get the wrapped player object of the player
+     * @return
+     */
     IWrappedPlayer getOnlinePlayer();
 
 }

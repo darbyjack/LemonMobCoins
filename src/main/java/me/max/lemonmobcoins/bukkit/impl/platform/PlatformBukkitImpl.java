@@ -54,6 +54,10 @@ public class PlatformBukkitImpl implements IWrappedPlatform {
         this.plugin = plugin;
     }
 
+    /**
+     * Get an array of all online wrapped players
+     * @return
+     */
     @Override
     public IWrappedPlayer[] getOnlinePlayers() {
         List<IWrappedPlayer> players = new ArrayList<>();
@@ -61,36 +65,69 @@ public class PlatformBukkitImpl implements IWrappedPlatform {
         return players.toArray(new IWrappedPlayer[0]);
     }
 
+    /**
+     * Get a wrapped player by string
+     * @param name the name of the player
+     * @return
+     */
     @Override
     public IWrappedPlayer getPlayer(String name) {
         return new PlayerBukkitImpl(Bukkit.getPlayer(name));
     }
 
+    /**
+     * Get a wrapped player by uuid
+     * @param uuid the uuid of the player
+     * @return
+     */
     @Override
     public IWrappedPlayer getPlayer(UUID uuid) {
         return new PlayerBukkitImpl(Bukkit.getPlayer(uuid));
     }
 
+    /**
+     * Get a wrapped offline player by uuid
+     * @param uuid the uuid of the player
+     * @return
+     */
     @Override
     public IWrappedOfflinePlayer getOfflinePlayer(UUID uuid) {
         return new OfflinePlayerBukkitImpl(Bukkit.getOfflinePlayer(uuid));
     }
 
+    /**
+     * Get the wrapped offline player by string
+     * @param name the name of the player
+     * @return
+     */
     @Override
     public IWrappedOfflinePlayer getOfflinePlayer(String name) {
         return new OfflinePlayerBukkitImpl(Bukkit.getOfflinePlayer(name));
     }
 
+    /**
+     * Enables the platform
+     */
     @Override
     public void enable() {
         plugin.onEnable();
     }
 
+    /**
+     * Disables the platform
+     */
     @Override
     public void disable() {
         plugin.onDisable();
     }
 
+    /**
+     * Create a wrapped inventory
+     * @param title the name of the inventory
+     * @param rows the size of the inventory
+     * @param items the items in the inventory
+     * @return
+     */
     @Override
     public IWrappedInventory createInventory(String title, int rows, List<ShopItem> items) {
         Inventory inv = Bukkit.createInventory(new InventoryHolderBukkitImpl(), rows, title);
@@ -100,6 +137,11 @@ public class PlatformBukkitImpl implements IWrappedPlatform {
         return new InventoryBukkitImpl(inv);
     }
 
+    /**
+     * Create a wrapped item stack
+     * @param item the item to be wrapped
+     * @return
+     */
     @Override
     public IWrappedItemStack toItemStack(ShopItem item) {
         ItemStack itemStack = new ItemStack(Material.matchMaterial(item.getMaterial()), item.getAmount());

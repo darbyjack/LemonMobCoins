@@ -37,21 +37,37 @@ public class PlayerBukkitImpl implements IWrappedPlayer {
         this.player = player;
     }
 
+    /**
+     * Ge the name of a player
+     * @return player name
+     */
     @Override
     public String getName() {
         return player.getName();
     }
 
+    /**
+     * Get the uuid of a player
+     * @return player uuid
+     */
     @Override
     public UUID getUniqueId() {
         return player.getUniqueId();
     }
 
+    /**
+     * Send a message to a player
+     * @param message message to send
+     */
     @Override
     public void sendMessage(String message) {
         player.sendMessage(message);
     }
 
+    /**
+     * Get wrapped inventory
+     * @param inventory inventory to open
+     */
     @Override
     public void openInventory(IWrappedInventory inventory) {
         player.openInventory((Inventory) inventory.getInventory());

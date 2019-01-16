@@ -38,21 +38,37 @@ public class PlayerSpongeImpl implements IWrappedPlayer {
         this.player = player;
     }
 
+    /**
+     * Get the name of the player
+     * @return player name
+     */
     @Override
     public String getName() {
         return player.getName();
     }
 
+    /**
+     * Get the uuid of the player
+     * @return player uuid
+     */
     @Override
     public UUID getUniqueId() {
         return player.getUniqueId();
     }
 
+    /**
+     * Send a message to the player
+     * @param message message to player
+     */
     @Override
     public void sendMessage(String message) {
         player.sendMessage(Text.of(message));
     }
 
+    /**
+     * Make the player open an inventory
+     * @param inventory inventory to player
+     */
     @Override
     public void openInventory(IWrappedInventory inventory) {
         player.openInventory((Inventory) inventory.getInventory());

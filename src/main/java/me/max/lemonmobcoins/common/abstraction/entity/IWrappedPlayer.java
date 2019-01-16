@@ -28,12 +28,28 @@ import java.util.UUID;
 
 public interface IWrappedPlayer {
 
+    /**
+     * Get the name of the wrapped player
+     * @return
+     */
     String getName();
 
+    /**
+     * Get the uuid of the wrapped player
+     * @return
+     */
     UUID getUniqueId();
 
+    /**
+     * Send a message to the wrapped player
+     * @param message
+     */
     void sendMessage(String message);
 
+    /**
+     * Make the wrapped player open an inventory
+     * @param inventory
+     */
     void openInventory(IWrappedInventory inventory);
 
 }

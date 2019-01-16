@@ -36,22 +36,38 @@ public class OfflinePlayerBukkitImpl implements IWrappedOfflinePlayer {
         this.offlinePlayer = offlinePlayer;
     }
 
+    /**
+     * Get the name of a player
+     * @return player name
+     */
     @Override
     public String getName() {
         return offlinePlayer.getName();
     }
 
+    /**
+     * Ge the uuid of a player
+     * @return player uuid
+     */
     @Override
     public UUID getUniqueId() {
         return offlinePlayer.getUniqueId();
     }
 
+    /**
+     * Check if player is online
+     * @return is online or not
+     */
     @Override
     public boolean isOnline() {
         return offlinePlayer.isOnline();
 
     }
 
+    /**
+     * Get the wrapped player object of the online player
+     * @return wrapped player object
+     */
     @Override
     public IWrappedPlayer getOnlinePlayer() {
         return new PlayerBukkitImpl(offlinePlayer.getPlayer());

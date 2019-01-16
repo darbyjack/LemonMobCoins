@@ -36,21 +36,37 @@ public class OfflinePlayerSpongeImpl implements IWrappedOfflinePlayer {
         this.user = user;
     }
 
+    /**
+     * Get the name of the player
+     * @return player name
+     */
     @Override
     public String getName() {
         return user.getName();
     }
 
+    /**
+     * Get the uuid of the player
+     * @return player uuid
+     */
     @Override
     public UUID getUniqueId() {
         return user.getUniqueId();
     }
 
+    /**
+     * Check if the player is online
+     * @return if player is online
+     */
     @Override
     public boolean isOnline() {
         return user.isOnline();
     }
 
+    /**
+     * Get the online player object of the offline player
+     * @return wrapped player object
+     */
     @Override
     public IWrappedPlayer getOnlinePlayer() {
         return user.getPlayer().map(PlayerSpongeImpl::new).orElse(null);

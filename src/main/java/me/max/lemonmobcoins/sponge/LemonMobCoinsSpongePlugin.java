@@ -156,44 +156,83 @@ public final class LemonMobCoinsSpongePlugin {
         info("Disabled successfully!");
     }
 
+    /**
+     * Shuts down the listeners and commands and tasks
+     */
     private void shutdown() {
         game.getEventManager().unregisterPluginListeners(this);
         game.getCommandManager().getOwnedBy(this).forEach(game.getCommandManager()::removeMapping);
         game.getScheduler().getScheduledTasks(this).forEach(Task::cancel);
     }
 
+    /**
+     * Registers the listeners for the plugin
+     * @param listeners
+     */
     private void registerListeners(Object... listeners) {
         Arrays.stream(listeners).forEach(l -> game.getEventManager().registerListeners(this, l));
     }
 
+    /**
+     * Log to console as INFO
+     * @param s
+     */
     private void info(String s) {
         logger.info(s);
     }
 
+    /**
+     * Log to console as WARN
+     * @param s
+     */
     private void warn(String s) {
         logger.warn(s);
     }
 
+    /**
+     * Log to console as ERROR
+     * @param s
+     */
     private void error(String s) {
         logger.error(s);
     }
 
+    /**
+     * Gets the logger
+     * @return
+     */
     private Logger getLogger() {
         return logger;
     }
 
+    /**
+     * Get the coin manager
+     * @return
+     */
     private CoinManager getCoinManager() {
         return lemonMobCoins.getCoinManager();
     }
 
+    /**
+     * Get the coin mob manager
+     * @return
+     */
     private CoinMobManager getCoinMobManager() {
         return lemonMobCoins.getCoinMobManager();
     }
 
+    /**
+     * Get the gui manager
+     * @return
+     */
     private GuiManager getGuiManager() {
         return lemonMobCoins.getGuiManager();
     }
 
+    /**
+     * Get the plugin message manager
+     * @return
+     */
     private AbstractPluginMessageManager getPluginMessageManager() {
         return pluginMessageManager;
     }

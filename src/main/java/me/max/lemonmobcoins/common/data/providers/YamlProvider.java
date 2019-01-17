@@ -44,6 +44,11 @@ public class YamlProvider implements DataProvider {
         dataLoader = YAMLConfigurationLoader.builder().setFile(dataFile).build();
     }
 
+    /**
+     * Load the plugin data
+     * @return loaded data
+     * @throws IOException
+     */
     @Override
     public Map<UUID, Double> loadData() throws IOException {
         Map<UUID, Double> coins = new HashMap<>();
@@ -53,6 +58,11 @@ public class YamlProvider implements DataProvider {
         return coins;
     }
 
+    /**
+     * Save the plugin data
+     * @param coins loaded data
+     * @throws IOException
+     */
     @Override
     public void saveData(Map<UUID, Double> coins) throws IOException {
         ConfigurationNode coinsData = dataLoader.load();

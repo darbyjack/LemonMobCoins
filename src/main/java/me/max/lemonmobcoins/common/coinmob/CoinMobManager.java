@@ -53,10 +53,19 @@ public class CoinMobManager {
         }
     }
 
+    /**
+     * Get the list of all coin mobs
+     * @return coin mobs list
+     */
     private List<CoinMob> getCoinMobList() {
         return coinMobList;
     }
 
+    /**
+     * Get a coin mob from a string
+     * @param type the mob type
+     * @return the coin mob
+     */
     public CoinMob getCoinMob(String type) {
         return getCoinMobList().stream().filter(coinMob -> coinMob.getMob().equalsIgnoreCase(type)).findFirst()
                                .orElse(null);

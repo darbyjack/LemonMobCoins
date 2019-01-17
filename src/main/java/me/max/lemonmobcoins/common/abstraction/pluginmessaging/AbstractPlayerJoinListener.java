@@ -44,6 +44,9 @@ public class AbstractPlayerJoinListener {
         return pluginMessageManager;
     }
 
+    /**
+     * Starts a timer for getting the messages from the manager
+     */
     protected void launchTimer() {
         if (getPluginMessageManager().getCache().isEmpty()) return;
         timer.schedule(timerTask, 1500L);

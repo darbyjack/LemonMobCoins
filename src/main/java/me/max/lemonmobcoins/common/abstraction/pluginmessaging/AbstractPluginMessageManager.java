@@ -43,10 +43,21 @@ public abstract class AbstractPluginMessageManager {
         this.logger = logger;
     }
 
+    /**
+     * This method sends a message via a players uuid
+     * @param uuid the uuid of the player
+     */
     public void sendPluginMessage(UUID uuid) {
 
     }
 
+    /**
+     * Get the plugin message for a player
+     * @param p the player the message is going to
+     * @param uuid the uuid of the player
+     * @param balance the balance of the player
+     * @return message for player
+     */
     protected ByteArrayDataOutput getPluginMessage(IWrappedPlayer p, UUID uuid, double balance) {
         if (p == null) {
             if (getCache().contains(uuid)) return null;
@@ -61,18 +72,33 @@ public abstract class AbstractPluginMessageManager {
         return out;
     }
 
+    /**
+     * This method will send all the cached
+     */
     void sendPendingPluginMessages() {
         getCache().forEach(this::sendPluginMessage);
     }
 
+    /**
+     * Get the uuid cache for the messages
+     * @return uuid cache
+     */
     List<UUID> getCache() {
         return cache;
     }
 
+    /**
+     * Get the coin manager
+     * @return coin manager
+     */
     public CoinManager getCoinManager() {
         return coinManager;
     }
 
+    /**
+     * Get the plugin logger
+     * @return logger
+     */
     public Logger getLogger() {
         return logger;
     }

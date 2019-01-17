@@ -51,6 +51,11 @@ public class MobCoinsCommand extends BaseCommand {
         this.guiManager = guiManager;
     }
 
+    /**
+     * Get the balance of a player
+     * @param issuer the person running the command
+     * @param player the player to check (optional)
+     */
     @Subcommand("balance|bal")
     @CommandPermission("lemonmobcoins.balance")
     public void onBalance(CommandIssuer issuer, @Optional String player) {
@@ -74,6 +79,12 @@ public class MobCoinsCommand extends BaseCommand {
                         .getName(), null, 0));
     }
 
+    /**
+     * Set the balance of a user
+     * @param issuer the person running the command
+     * @param player the player to modify
+     * @param amount the new balance
+     */
     @Subcommand("set")
     @CommandPermission("lemonmobcoins.admin")
     public void onSet(CommandIssuer issuer, String player, double amount) {
@@ -92,6 +103,12 @@ public class MobCoinsCommand extends BaseCommand {
         }
     }
 
+    /**
+     * Give coins to a user
+     * @param issuer the person running the command
+     * @param player the player to modify
+     * @param amount the amount to add
+     */
     @Subcommand("give")
     @CommandPermission("lemonmobcoins.admin")
     public void onGive(CommandIssuer issuer, String player, double amount) {
@@ -110,6 +127,12 @@ public class MobCoinsCommand extends BaseCommand {
         }
     }
 
+    /**
+     * Take coins from a user
+     * @param issuer the person running the command
+     * @param player the player to modify
+     * @param amount the amount to remove
+     */
     @Subcommand("take")
     @CommandPermission("lemonmobcoins.admin")
     public void onTake(CommandIssuer issuer, String player, double amount) {
@@ -128,6 +151,11 @@ public class MobCoinsCommand extends BaseCommand {
         }
     }
 
+    /**
+     * Resets a player's coins
+     * @param issuer the person running the command
+     * @param player the player to modify
+     */
     @Subcommand("reset")
     @CommandPermission("lemonmobcoins.admin")
     public void onReset(CommandIssuer issuer, String player) {
@@ -144,6 +172,12 @@ public class MobCoinsCommand extends BaseCommand {
         }
     }
 
+    /**
+     * Pay another user
+     * @param issuer the person running the command
+     * @param player the player being paid
+     * @param amount the amount to pay player
+     */
     @Subcommand("pay")
     @CommandPermission("lemonmobcoins.pay")
     public void onPay(CommandIssuer issuer, String player, double amount) {
@@ -171,6 +205,10 @@ public class MobCoinsCommand extends BaseCommand {
                         .getPlayer(issuer.getUniqueId()).getName(), null, amount));
     }
 
+    /**
+     * Reloads the plugin
+     * @param issuer the person running the command
+     */
     @Subcommand("reload")
     @CommandPermission("lemonmobcoins.admin")
     public void onReload(CommandIssuer issuer) {
@@ -187,16 +225,10 @@ public class MobCoinsCommand extends BaseCommand {
         }
     }
 
-    @Subcommand("help|?|h")
-    @CommandPermission("lemonmobcoins.help")
-    public void onHelp(CommandIssuer issuer) {
-        if (issuer.hasPermission("lemonmobcoins.admin")) {
-            issuer.sendMessage(Messages.ADMIN_HELP_MENU.getMessage(0, null, null, 0));
-            return;
-        }
-        issuer.sendMessage(Messages.PLAYER_HELP_MENU.getMessage(0, null, null, 0));
-    }
-
+    /**
+     * Opens the plugin shop
+     * @param issuer the person running the command
+     */
     @Subcommand("shop|s")
     @CommandPermission("lemonmobcoins.shop")
     public void onShop(CommandIssuer issuer) {
@@ -205,10 +237,18 @@ public class MobCoinsCommand extends BaseCommand {
             player.openInventory(guiManager.getInventory());
     }
 
-    @Default
-    @CatchUnknown
-    public void onUnknownSubCommand(CommandIssuer issuer) {
-        issuer.sendMessage(Messages.UNKNOWN_SUBCOMMAND.getMessage(0, null, null, 0));
+    /**
+     * Displays the help menu to the user
+     * @param issuer the person running the command
+     */
+    @HelpCommand
+    @CommandPermission("lemonmobcoins.help")
+    public void onHelp(CommandIssuer issuer) {
+        if (issuer.hasPermission("lemonmobcoins.admin")) {
+            issuer.sendMessage(Messages.ADMIN_HELP_MENU.getMessage(0, null, null, 0));
+            return;
+        }
+        issuer.sendMessage(Messages.PLAYER_HELP_MENU.getMessage(0, null, null, 0));
     }
 
 }

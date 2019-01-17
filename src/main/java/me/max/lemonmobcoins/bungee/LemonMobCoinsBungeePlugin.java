@@ -44,6 +44,9 @@ public final class LemonMobCoinsBungeePlugin extends Plugin {
     private final Logger logger = LoggerFactory.getLogger(LemonMobCoins.class);
     private LemonMobCoins lemonMobCoins;
 
+    /**
+     * This method is called when the plugin is loaded (BEFORE) being enabled
+     */
     @Override
     public void onLoad() {
         try {
@@ -58,6 +61,9 @@ public final class LemonMobCoinsBungeePlugin extends Plugin {
         lemonMobCoins = new LemonMobCoins(getSLF4JLogger(), getDataFolder(), null);
     }
 
+    /**
+     * This method is called when the plugin is being enabled
+     */
     @Override
     public void onEnable() {
         try {
@@ -82,6 +88,9 @@ public final class LemonMobCoinsBungeePlugin extends Plugin {
 
     }
 
+    /**
+     * This method is being called when the plugin gets disabled
+     */
     @Override
     public void onDisable() {
         try {
@@ -101,22 +110,42 @@ public final class LemonMobCoinsBungeePlugin extends Plugin {
         info("Disabled successfully!");
     }
 
+    /**
+     * Logs things to console as INFO
+     * @param s the string to log
+     */
     private void info(String s) {
         getSLF4JLogger().info(s);
     }
 
+    /**
+     * Log things to console as WARN
+     * @param s the string to log
+     */
     private void warn(String s) {
         getSLF4JLogger().warn(s);
     }
 
+    /**
+     * Log things to console as ERROR
+     * @param s the string to log
+     */
     private void error(String s) {
         getSLF4JLogger().error(s);
     }
 
+    /**
+     * Get the plugin logger
+     * @return logger
+     */
     private Logger getSLF4JLogger() {
         return logger;
     }
 
+    /**
+     * Get the coin manager
+     * @return coin manager
+     */
     @NotNull
     private CoinManager getCoinManager() {
         return lemonMobCoins.getCoinManager();

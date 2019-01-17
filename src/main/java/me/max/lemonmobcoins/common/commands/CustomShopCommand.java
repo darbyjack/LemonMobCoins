@@ -44,6 +44,10 @@ public class CustomShopCommand extends BaseCommand {
         this.guiManager = guiManager;
     }
 
+    /**
+     * The default action for this command
+     * @param issuer the person running the command
+     */
     @Default
     @CatchUnknown
     public void onShop(CommandIssuer issuer) {

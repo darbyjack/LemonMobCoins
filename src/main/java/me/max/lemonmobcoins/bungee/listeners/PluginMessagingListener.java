@@ -44,6 +44,10 @@ public class PluginMessagingListener implements Listener {
         this.coinManager = coinManager;
     }
 
+    /**
+     * Handles listening for messages through plugin channels
+     * @param event the plugin message event
+     */
     @EventHandler
     public void onPluginMessage(PluginMessageEvent event) {
         if (!event.getTag().equals("BungeeCord")) return;

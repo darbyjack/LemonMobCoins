@@ -75,29 +75,54 @@ public class GuiManager {
         }
     }
 
+    /**
+     * Get the row count of the gui
+     * @return row count
+     */
     public int getRows() {
         return rows;
     }
 
+    /**
+     * Get the items for the gui
+     * @return list of items
+     */
     @NotNull
     public List<ShopItem> getItems() {
         return items;
     }
 
+    /**
+     * Get the title of the gui
+     * @return gui title
+     */
     @NotNull
     public String getTitle() {
         return title;
     }
 
+    /**
+     * Get the wrapped inventory object
+     * @return wrapped inventory
+     */
     public IWrappedInventory getInventory() {
         return platform.createInventory(title, rows, items);
     }
 
+    /**
+     * Get the command
+     * @return command
+     */
     @NotNull
     public String getCommand() {
         return command;
     }
 
+    /**
+     * Get the shop item from an itemstack
+     * @param itemStack the itemstack being checked
+     * @return shop item
+     */
     public ShopItem getShopItem(IWrappedItemStack itemStack) {
         return items.stream().filter(item -> platform.toItemStack(item).equals(itemStack)).findFirst().orElse(null);
     }

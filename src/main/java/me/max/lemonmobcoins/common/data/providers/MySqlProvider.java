@@ -39,6 +39,11 @@ public class MySqlProvider implements DataProvider {
         createTable();
     }
 
+    /**
+     * Load the plugin data
+     * @return loaded data
+     * @throws SQLException
+     */
     @Override
     public Map<UUID, Double> loadData() throws SQLException {
         Map<UUID, Double> coins = new HashMap<>();
@@ -50,16 +55,33 @@ public class MySqlProvider implements DataProvider {
         return coins;
     }
 
+    /**
+     * Save the plugin data
+     * @param coins loaded data
+     * @throws SQLException
+     */
     @Override
     public void saveData(Map<UUID, Double> coins) throws SQLException {
         for (Map.Entry<UUID, Double> entry : coins.entrySet()) setCoin(entry.getKey(), entry.getValue());
         connection.close();
     }
 
+    /**
+     * Prepare a statement to be queried in SQL
+     * @param query the statement being queried
+     * @return the prepared statement
+     * @throws SQLException
+     */
     private PreparedStatement prepareStatement(Queries query) throws SQLException {
         return connection.prepareStatement(query.getQuery());
     }
 
+    /**
+     * Set the coins of a user
+     * @param uuid the uuid of the user
+     * @param amount the amount of coins
+     * @throws SQLException
+     */
     private void setCoin(UUID uuid, double amount) throws SQLException {
         PreparedStatement stm = prepareStatement(Queries.SET_COIN);
         stm.setString(1, uuid.toString());
@@ -68,6 +90,11 @@ public class MySqlProvider implements DataProvider {
         stm.close();
     }
 
+    /**
+     * Get the coins of a user
+     * @return the amount of coins
+     * @throws SQLException
+     */
     private ResultSet getCoins() throws SQLException {
         PreparedStatement stm = prepareStatement(Queries.GET_COINS);
         ResultSet rs = stm.executeQuery();
@@ -75,6 +102,10 @@ public class MySqlProvider implements DataProvider {
         return rs;
     }
 
+    /**
+     * Create the plugin tables
+     * @throws SQLException
+     */
     private void createTable() throws SQLException {
         PreparedStatement stm = prepareStatement(Queries.CREATE_TABLE);
         stm.executeUpdate();

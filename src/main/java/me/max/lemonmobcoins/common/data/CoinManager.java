@@ -45,30 +45,63 @@ public class CoinManager {
         }
     }
 
+    /**
+     * Save plugin data
+     * @throws IOException
+     * @throws SQLException
+     */
     public void saveData() throws IOException, SQLException {
         dataProvider.saveData(coins);
     }
 
+    /**
+     * Get the coins of a player
+     * @param uuid the uuid of the player
+     * @return the amount of coins
+     */
     public double getCoinsOfPlayer(@NotNull UUID uuid) {
         return coins.getOrDefault(uuid, 0.0);
     }
 
+    /**
+     * Set the coins of a player
+     * @param uuid the uuid of the player
+     * @param coins the amount of coins
+     */
     public void setCoinsOfPlayer(@NotNull UUID uuid, double coins) {
         this.coins.put(uuid, coins);
     }
 
+    /**
+     * Add coins to a player
+     * @param uuid the uuid of the player
+     * @param coins the amount of coins
+     */
     public void addCoinsToPlayer(@NotNull UUID uuid, double coins) {
         setCoinsOfPlayer(uuid, getCoinsOfPlayer(uuid) + coins);
     }
 
+    /**
+     * Not used apparently
+     * @param uuid the uuid of the player
+     */
     public void incrementPlayerBalance(@NotNull UUID uuid) {
         addCoinsToPlayer(uuid, 1);
     }
 
+    /**
+     * Remove coins from the player
+     * @param uuid the uuid of the player
+     * @param price the amount of coins
+     */
     public void deductCoinsFromPlayer(@NotNull UUID uuid, double price) {
         setCoinsOfPlayer(uuid, getCoinsOfPlayer(uuid) - price);
     }
 
+    /**
+     * Get a map of all coins
+     * @return map of coins
+     */
     @NotNull
     public Map<UUID, Double> getCoins() {
         return coins;

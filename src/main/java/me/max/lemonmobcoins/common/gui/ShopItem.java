@@ -53,46 +53,86 @@ public class ShopItem {
         this.commands = commands;
     }
 
+    /**
+     * Get the size of the item
+     * @return size
+     */
     public int getAmount() {
         return amount;
     }
 
+    /**
+     * Get the display name of the item
+     * @return display name
+     */
     @NotNull
     public String getDisplayname() {
         return displayname;
     }
 
+    /**
+     * Check if the item is glowing or not
+     * @return true / false
+     */
     public boolean isGlowing() {
         return glowing;
     }
 
+    /**
+     * Check if the item has a permission on it
+     * @return true / false
+     */
     public boolean isPermission() {
         return permission;
     }
 
+    /**
+     * Get the price of an item
+     * @return price
+     */
     public double getPrice() {
         return price;
     }
 
+    /**
+     * Get the slot of the item
+     * @return slot
+     */
     public int getSlot() {
         return slot;
     }
 
+    /**
+     * Get the lore of an item
+     * @return item lore
+     */
     @NotNull
     public List<String> getLore() {
         return lore;
     }
 
+    /**
+     * Get the commands from an item
+     * @return item commands
+     */
     @NotNull
     public List<String> getCommands() {
         return commands;
     }
 
+    /**
+     * Get the material of an item
+     * @return item material
+     */
     @NotNull
     public String getMaterial() {
         return material;
     }
 
+    /**
+     * Get the identifier of an item
+     * @return item identifier
+     */
     public String getIdentifier() {
         return identifier;
     }

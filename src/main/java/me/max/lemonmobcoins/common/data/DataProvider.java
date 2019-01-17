@@ -29,8 +29,20 @@ import java.util.UUID;
 
 public interface DataProvider {
 
+    /**
+     * Load plugin data
+     * @return loaded data
+     * @throws SQLException
+     * @throws IOException
+     */
     Map<UUID, Double> loadData() throws SQLException, IOException;
 
+    /**
+     * Save plugin data
+     * @param coins loaded data
+     * @throws SQLException
+     * @throws IOException
+     */
     void saveData(Map<UUID, Double> coins) throws SQLException, IOException;
 
 }
